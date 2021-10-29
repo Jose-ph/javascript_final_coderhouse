@@ -1,0 +1,289 @@
+
+/*Agrega letra Pacifico google fonts*/
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Agrega letra Ultra */
+
+@import url('https://fonts.googleapis.com/css2?family=Slabo+13px&display=swap');
+
+/* Agrega letra bungee */
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+
+/*Agrega reset*/
+
+
+
+/*estilos body*/
+
+
+body{
+    
+    font-family: 'Pacifico', cursive;
+    
+    overflow-x: hidden;
+}
+
+
+/*Estilos Menu-Navbar*/
+
+#menu a {
+    font-size: 18px;
+    
+
+}
+
+#menu a:hover {
+
+    color: #f8e12d;
+
+}
+
+
+
+#menu button{
+
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+/*Estilos carrousel*/
+
+.carousel-inner{
+
+    max-height: 39rem;
+
+}
+
+
+
+
+
+/*estilos para la futura seccion contactos */
+
+#contacto {
+
+    background-color: #f3f3f3;
+    padding-bottom: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 50%;
+    margin-left: 100px;
+    padding-top: 150px;
+
+}
+
+#numeros-local div{
+
+    padding:0 20px 0 0 ;
+    height: 48px;
+
+    border-right: 2px solid #3f3f3f;
+
+    padding-left:20px ;
+
+
+    
+}
+
+#numeros-local p {
+    margin: 0%;
+}
+
+/*Estilo fondo contactos*/
+
+#fondo-contactos{
+
+    position: relative;
+     top:-130px; 
+
+}
+
+#seccion-contactos{
+
+    background-color:#c4ba9e;
+    min-height: 500px;
+    position: relative;
+
+}
+
+
+/*Estilos del footer*/
+
+footer{
+    background: black;
+    min-height:100px ;
+}
+footer p {
+    color: #f3f3f3;
+    text-align: center;
+}
+
+footer a i {
+
+    font-size:26px;
+    padding: 0 8px;
+    color: #f3f3f3;
+}
+
+footer a i:hover {
+
+    
+    
+    color: #f8e12d;
+}
+
+
+/* Estilos tienda */
+
+h1 {
+    font-family: 'Bungee',cursive;
+    font-size: 60px;
+}
+/* Estilos Cards */
+
+
+#fila-servicios{
+
+    display: flex;
+    
+    flex-direction: row;
+    
+    flex-wrap: nowrap;
+   justify-content: space-around;
+     
+
+}
+
+.card {
+  
+        width: 250px !important;
+}
+
+/* Estilos carrito */
+#carrito{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parrafo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-family: 'Bungee',cursive;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Estilos para pantalla 768px*/
+
+@media (max-width:768px){
+
+    #inicio  {
+
+        width: 90% !important;
+
+    }
+
+    #nosotros{
+        width: 90% !important;
+    }
+
+  
+
+    #fila-servicios {
+
+        width: 100% !important;
+        text-align: center;
+
+    }
+
+     #fondo-contactos{
+
+        
+        top:-110px;
+    
+    }
+
+    #fila-servicios{
+
+        display: flex;
+        
+        flex-direction: row;
+        
+        flex-wrap: wrap;
+    }
+}
+     
+
+
+
+/* Estilos para pantalla 576px*/
+
+@media(max-width: 576px){
+
+    #imagen-servicio{
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+
+
+    #nosotros p {
+        display: none;
+    }
+
+    #fila-servicios{
+
+        display: flex;
+        
+        flex-direction: row;
+        
+        flex-wrap: wrap;
+    }
+}
+
+/* Estilos para desktop*/
+
+@media(max-width:1200px){
+
+    #contacto  {
+        flex-wrap: wrap;
+        padding-top: 30px;
+    }
+
+    .wrapper {
+        width: 90%;
+        margin: auto;
+        padding-top: 50px;
+    }
+}
+
+
+#form-js {
+
+    width: 400px;
+}
+
