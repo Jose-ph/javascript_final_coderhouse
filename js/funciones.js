@@ -126,14 +126,14 @@ function mostrarTotalGastado() {
       </button> -->
 
       <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+        </div>
+        <div class="modal-body">
 
       <p class="parrafo">La cantidad de productos es : ${productosTotal}
       y el valor total es  $: ${precioTotal.toFixed(2)}
@@ -146,8 +146,8 @@ function mostrarTotalGastado() {
      
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Pagar</button>
+        <button type="button" class="btn btn-secondary cerrar" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary pagar">Pagar</button>
       </div>
     </div>
   </div>
@@ -157,10 +157,40 @@ function mostrarTotalGastado() {
 
     pasarADolar();
     pasarAPesos();
+    pagar();
     return precioTotal;
   } else {
     seccionMostrarTotal.innerHTML = "";
   }
+}
+
+
+function pagar(){
+
+  let cuerpoModal = document.querySelector(".modal-body");
+
+  //Agrega botón pagar
+
+  $('.pagar').click(()=>{
+
+  
+
+  cuerpoModal.innerHTML =" <p>Gracias por su compra !!</p>"
+
+   
+
+})
+
+$('.cerrar').click(()=>{
+
+  
+  carritoUsuario = [];
+  actualizarCarrito();
+  
+
+})
+
+
 }
 
 //Esta funcion borra el producto del carrito
