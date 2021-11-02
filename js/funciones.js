@@ -118,12 +118,12 @@ function mostrarTotalGastado() {
 
     seccionMostrarTotal.innerHTML = `
 
-      <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
+    <!-- <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
       <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Comprar
-      </button>
+      </button> -->
 
       <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -134,7 +134,9 @@ function mostrarTotalGastado() {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        AQUI APARECERA EL TOTAL DE PRODUCTOS Y EL TOTAL DE DINERO
+        <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
+      <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
