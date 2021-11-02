@@ -7,7 +7,7 @@ function crearCards(productos, seccion) {
     cardDiv.style.width = "18rem";
 
     let imgDiv = document.createElement("img");
-    imgDiv.setAttribute("src", "../images/logo3.png");
+    imgDiv.setAttribute("src", `${productos[i].img}`);
     imgDiv.setAttribute("class", "card-img-top");
 
     let cardBodyDiv = document.createElement("div");
@@ -21,7 +21,8 @@ function crearCards(productos, seccion) {
 
     let cardParrafo = document.createElement("p");
     cardParrafo.setAttribute("class", "card-text");
-    cardParrafo.textContent = ` Precio: $ ${productos[i].precio}-- stock: ${productos[i].stock}`;
+    cardParrafo.textContent = ` Precio: $ ${productos[i].precio}-- stock: ${productos[i].stock}
+    Descripción: ${productos[i].descripcion} ${productos[i].peso}`;
 
     let cardEnlace = document.createElement("a");
     cardEnlace.setAttribute("class", "btn btn-primary");
@@ -67,6 +68,17 @@ function agregarAlCarrito(idProducto) {
     );
 
     carritoUsuario.push({ ...itemCoincideId, unidadesElegidas: 1 });
+
+    productos.forEach(producto => {
+
+      if(producto.id == idProducto){
+        
+          producto.stock--;
+          console.log(producto.stock);
+      }
+      
+    });
+    
   }
 
   actualizarCarrito();
@@ -75,6 +87,7 @@ function agregarAlCarrito(idProducto) {
 //Esta funcion muestra el carrito sin recargar la página
 function actualizarCarrito() {
   mostrarProductosCarrito();
+  
 
   sumarUnidad();
 
@@ -149,7 +162,9 @@ function mostrarProductosCarrito() {
     <img src="${item.img}" class="card-img-top">
     <div class="card-body" id="${item.id}">
     <h5 class="card-title">${item.id}-- Miel Pura</h5>
-    <p class="card-text"> Precio:ARS ${item.precio}-- Unidades:${item.unidadesElegidas}</p>
+    <p class="card-text"> Precio:ARS ${item.precio}-- Unidades:${item.unidadesElegidas}
+      Stock: ${item.stock -1} 
+      Descripción : ${item.descripcion} ${item.peso}</p>
     <button type="button" class ="sumar btn btn-success">+</button>
     <button type="button" class="restar btn btn-info">-</button>
     <button type="button" class="btn btn-danger eliminar">X</button>
@@ -175,6 +190,7 @@ function sumarUnidad() {
           unidadesElegidas < item.stock
         ) {
           unidadesElegidas++;
+          item.stock--;
         }
 
         return {
@@ -198,7 +214,19 @@ function restarUnidad() {
 
         if (item.id == boton.parentElement.id && unidadesElegidas > 1) {
           unidadesElegidas--;
+          item.stock++;
+
         }
+
+        //Agrega Modal
+        if (item.id == boton.parentElement.id && unidadesElegidas == 1) {
+          
+          alert("Si quieres eliminar el producto, presiona x");
+
+
+        }
+        
+        
 
         return {
           ...item,

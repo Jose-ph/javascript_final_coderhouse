@@ -6,7 +6,7 @@
       envase: "plástico",
       precio: 250,
       stock: 50,
-      img: "../images/miel_carrito.jpeg",
+      img: "../images/miel_plastico.jpeg",
       descripcion: "Miel de abejas en envase de plástico",
     },
     {
@@ -26,7 +26,7 @@
       envase: "plástico",
       precio: 500,
       stock: 90,
-      img: "../images/miel_carrito.jpeg",
+      img: "../images/miel_plastico.jpeg",
       descripcion:"Miel de abejas en envase de plástico",
     },
     {
