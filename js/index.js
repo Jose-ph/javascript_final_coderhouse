@@ -77,27 +77,3 @@ botonVidrio.click(() => {
   console.log(cardsDuplicadas);
 });
 
-//Agrega botón pagar
-
-$('.pagar').click(()=>{
-
-  let cuerpoModal = document.querySelector(".modal-body");
-
-  cuerpoModal.innerHTML =" <p>Gracias por su compra !!</p>"
-
-  
-  
-  alert("pagar")
-})
-
-$('btn-close').click(()=>{
-
-  carritoUsuario = [];
-
-
-    
-    actualizarCarrito();
-  
-  
-
-})

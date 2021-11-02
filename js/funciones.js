@@ -67,7 +67,7 @@ function agregarAlCarrito(idProducto) {
       (producto) => producto.id == idProducto
     );
 
-    carritoUsuario.push({ ...itemCoincideId, unidadesElegidas: 1 });
+    carritoUsuario.push({ ...itemCoincideId, unidadesElegidas: 1,stock : itemCoincideId.stock  });
 
     productos.forEach(producto => {
 
@@ -193,6 +193,8 @@ $('.cerrar').click(()=>{
 
 }
 
+
+
 //Esta funcion borra el producto del carrito
 
 function borrarProductoCarrito() {
@@ -223,7 +225,7 @@ function mostrarProductosCarrito() {
     <div class="card-body" id="${item.id}">
     <h5 class="card-title">${item.id}-- Miel Pura</h5>
     <p class="card-text"> Precio:ARS ${item.precio}-- Unidades:${item.unidadesElegidas}
-      Stock: ${item.stock -1} 
+      Stock: ${item.stock-1 } 
       Descripción : ${item.descripcion} ${item.peso}</p>
     <button type="button" class ="sumar btn btn-success">+</button>
     <button type="button" class="restar btn btn-info">-</button>
@@ -251,6 +253,7 @@ function sumarUnidad() {
         ) {
           unidadesElegidas++;
           item.stock--;
+          
         }
 
         return {
