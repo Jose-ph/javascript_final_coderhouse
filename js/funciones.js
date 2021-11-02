@@ -134,21 +134,26 @@ function mostrarTotalGastado() {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        AQUI APARECERA EL TOTAL DE PRODUCTOS Y EL TOTAL DE DINERO
+
+      <p class="parrafo">La cantidad de productos es : ${productosTotal}
+      y el valor total es  $: ${precioTotal.toFixed(2)}
+      </p>
+      
+        
         <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
       <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
+
+     
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Pagar</button>
       </div>
     </div>
   </div>
 </div>
     
-      <p class="parrafo">La cantidad de productos es : ${productosTotal}
-      y el valor total es  $: ${precioTotal.toFixed(2)}
-      </p>`;
+      `;
 
     pasarADolar();
     pasarAPesos();
