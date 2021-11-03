@@ -168,6 +168,7 @@ function mostrarTotalGastado() {
 function pagar(){
 
   let cuerpoModal = document.querySelector(".modal-body");
+  let pagar = false;
 
   //Agrega botón pagar
 
@@ -177,6 +178,8 @@ function pagar(){
 
   cuerpoModal.innerHTML =" <p>Gracias por su compra !!</p>"
 
+  pagar = true;
+
    
 
 })
@@ -184,9 +187,10 @@ function pagar(){
 $('.cerrar').click(()=>{
 
   
+  if(pagar === true){
   carritoUsuario = [];
   actualizarCarrito();
-  
+  }
 
 })
 
