@@ -101,7 +101,7 @@ function actualizarCarrito() {
 
   guardarCarritoUsuario();
 
-  $("#carrito .card").hide().fadeIn(1000);
+  //$("#carrito .card").hide().fadeIn(1000);
 }
 
 //Esta función muestra el total gastado.
@@ -118,8 +118,7 @@ function mostrarTotalGastado() {
 
     seccionMostrarTotal.innerHTML = `
 
-    <!-- <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
-      <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
+    
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Comprar
@@ -135,19 +134,20 @@ function mostrarTotalGastado() {
         </div>
         <div class="modal-body">
 
-      <p class="parrafo">La cantidad de productos es : ${productosTotal}
+      <p class="parrafo" id="parrafo-modal">La cantidad de productos es : ${productosTotal}
       y el valor total es  $: ${precioTotal.toFixed(2)}
       </p>
       
-        
-        <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
-      <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
+     
 
      
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
+        <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
         <button type="button" class="btn btn-secondary cerrar" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary pagar">Pagar</button>
+        
       </div>
     </div>
   </div>
@@ -157,6 +157,7 @@ function mostrarTotalGastado() {
 
     pasarADolar();
     pasarAPesos();
+    dolarMODAl();
     pagar();
     return precioTotal;
   } else {
@@ -180,7 +181,7 @@ function pagar(){
 
   pagar = true;
 
-   
+   //Enviar carrito procesar pago settimeout
 
 })
 
@@ -224,7 +225,10 @@ function borrarProductoCarrito() {
 function mostrarProductosCarrito() {
   sectionCarrito.innerHTML = "";
   carritoUsuario.forEach((item) => {
-    sectionCarrito.innerHTML += `<div class="card" style="width: 18rem;">
+    sectionCarrito.innerHTML += `
+    
+    
+    <div class="card" style="width: 18rem;">
     <img src="${item.img}" class="card-img-top">
     <div class="card-body" id="${item.id}">
     <h5 class="card-title">${item.id}-- Miel Pura</h5>
@@ -232,9 +236,9 @@ function mostrarProductosCarrito() {
       Stock: ${item.stock } 
       Descripción : ${item.descripcion} ${item.peso}</p>
     <button type="button" class ="sumar btn btn-success">+</button>
-    <button type="button" class="restar btn btn-info">-</button>
+    <button type="button" class="restar btn btn-info">-</button> 
     <button type="button" class="btn btn-danger eliminar">X</button>
-    
+     
 
 
     </div>`;
@@ -259,8 +263,16 @@ function sumarUnidad() {
           unidadesElegidas++;
           item.stock--;
           console.log(item.stock)
+
+          
+
+          if(item.stock == 0){
+            alert("No hay más stock");
+          }
           
         }
+
+        
 
         return {
           ...item,
@@ -284,17 +296,27 @@ function restarUnidad() {
         if (item.id == boton.parentElement.id && unidadesElegidas > 1) {
           unidadesElegidas--;
           item.stock++;
+          console.log(unidadesElegidas);
+
+         
+          
+        }
+
+        
+        if( item.id == boton.parentElement.id && unidadesElegidas == 1){
+          
+          //eliminar producto del carrito
+          
+          
+          
+          
+          //alert("Producto a borrar");
+          
+
 
         }
 
-        //Agrega Modal
-       /*  if (item.id == boton.parentElement.id && unidadesElegidas == 1) {
-          
-          
-
-
-        }
-         */
+       
         
 
         return {
@@ -325,6 +347,9 @@ function guardarCarritoUsuario() {
   localStorage.setItem("carritoUsuario", carritoJson);
 }
 
+
+
+
 //Estas funciones manejan el tipo de cambio.
 
 function pasarADolar() {
@@ -338,8 +363,13 @@ function pasarADolar() {
         console.log(respuesta);
 
         let precioTotal = parseInt(mostrarTotalGastado()) / tipoCambioOficial;
+        let cuerpoModal = document.querySelector(".modal-body");
 
-        $(".parrafo").text(`El total en u$d es : ${precioTotal.toFixed(2)} `);
+        cuerpoModal.innerHTML= `<p>El total en u$d es : ${precioTotal.toFixed(2)} </p>
+       
+        
+        
+        `;
       } else {
         console.log("No llegaron los datos");
       }
@@ -353,7 +383,7 @@ function pasarAPesos() {
 
     let precioTotal = parseInt(mostrarTotalGastado());
 
-    $(".parrafo").text(`El total en $ es : ${precioTotal.toFixed(2)} `);
+    $("#parrafo-modal").text(`El total en $ es : ${precioTotal.toFixed(2)} `);
   });
 }
 
@@ -376,4 +406,15 @@ function mostrarCartas(cartas) {
   console.log(cartas[0]);
   console.log(cartas[1]);
   cardsDuplicadas = Array.from(cards).map((cards) => cards);
+}
+
+
+
+function dolarMODAl(){
+
+  $('.dolar-modal').click(()=>{
+
+    $("#parrafo-modal").text(`El total en $ es : 1000`);
+
+  })
 }
