@@ -139,12 +139,12 @@ function mostrarTotalGastado() {
       </p>
       
      
-
+      <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
+        <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
      
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
-        <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
+        
         <button type="button" class="btn btn-secondary cerrar" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary pagar">Pagar</button>
         
@@ -355,7 +355,13 @@ function guardarCarritoUsuario() {
 function pasarADolar() {
   $(".dolar").click(() => {
     console.log("click dolar");
-    $.get(URLGET, function (respuesta, estado) {
+
+    let parrafoModal = document.querySelector("#parrafo-modal");
+        parrafoModal.innerHTML =`<p>Esto debe ser en Dolar</p>`
+
+     /* $('#parrafo-modal').text("Esto debe ser en dólares") 
+ */
+   /*  $.get(URLGET, function (respuesta, estado) {
       if (estado === "success") {
         let datosDolarOficial = respuesta;
         //$('.parrafo').text(`${datosDolarOficial[0].casa.venta}`)
@@ -373,7 +379,7 @@ function pasarADolar() {
       } else {
         console.log("No llegaron los datos");
       }
-    });
+    }); */
   });
 }
 
@@ -381,9 +387,11 @@ function pasarAPesos() {
   $(".pesos").click(() => {
     console.log("click peso");
 
-    let precioTotal = parseInt(mostrarTotalGastado());
+   /*  let precioTotal = parseInt(mostrarTotalGastado());
 
-    $("#parrafo-modal").text(`El total en $ es : ${precioTotal.toFixed(2)} `);
+    $("#parrafo-modal").text(`El total en $ es : ${precioTotal.toFixed(2)} `); */
+
+    $('#parrafo-modal').text("Esto debe ser en pesos")
   });
 }
 
