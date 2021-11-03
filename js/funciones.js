@@ -224,8 +224,8 @@ function mostrarProductosCarrito() {
     <img src="${item.img}" class="card-img-top">
     <div class="card-body" id="${item.id}">
     <h5 class="card-title">${item.id}-- Miel Pura</h5>
-    <p class="card-text"> Precio:ARS ${item.precio}-- Unidades:${item.unidadesElegidas}
-      Stock: ${item.stock-1 } 
+    <p class="card-text"> Precio:ARS ${item.precio}-- Unidades:${item.unidadesElegidas -1 }
+      Stock: ${item.stock } 
       Descripción : ${item.descripcion} ${item.peso}</p>
     <button type="button" class ="sumar btn btn-success">+</button>
     <button type="button" class="restar btn btn-info">-</button>
@@ -248,11 +248,13 @@ function sumarUnidad() {
         let unidadesElegidas = item.unidadesElegidas;
 
         if (
-          item.id == boton.parentElement.id &&
-          unidadesElegidas < item.stock
+          item.id == boton.parentElement.id/*  &&
+          unidadesElegidas < item.stock */
+          && item.stock > 0
         ) {
           unidadesElegidas++;
           item.stock--;
+          console.log(item.stock)
           
         }
 
@@ -282,13 +284,13 @@ function restarUnidad() {
         }
 
         //Agrega Modal
-        if (item.id == boton.parentElement.id && unidadesElegidas == 1) {
+       /*  if (item.id == boton.parentElement.id && unidadesElegidas == 1) {
           
-          alert("Si quieres eliminar el producto, presiona x");
+          
 
 
         }
-        
+         */
         
 
         return {
