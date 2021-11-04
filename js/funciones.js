@@ -21,7 +21,7 @@ function crearCards(productos, seccion) {
 
     let cardParrafo = document.createElement("p");
     cardParrafo.setAttribute("class", "card-text");
-    cardParrafo.textContent = ` Precio: $ ${productos[i].precio}-- stock: ${productos[i].stock}
+    cardParrafo.textContent = ` Precio: $ ${productos[i].precio}-
     Descripción: ${productos[i].descripcion} ${productos[i].peso}`;
 
     let cardEnlace = document.createElement("a");
@@ -143,7 +143,8 @@ function mostrarTotalGastado() {
         </div>
         <div class="modal-body">
 
-      <p id="parrafo-modal">Aquí se procesara el pago</p>
+      <p id="parrafo-modal">Presione para Pagar para continuar el proceso de compra.</p>
+      
       
      
       <div class="modal-footer">
@@ -186,13 +187,21 @@ function pagar(){
     $('#parrafo-modal').text("Procesando pago...")
 
   setTimeout(() => {
-    $('#parrafo-modal').text("Gracias por su compra")
+    $('#parrafo-modal').text("Gracias por su compra!!")
 
   }, 1500);
  /*  $('#parrafo-modal').text("Gracias por su compra")
  */
   pagar = true;
 
+  //Ocultar resto página
+  setTimeout(() => {
+    carritoUsuario = [];
+    actualizarCarrito()
+    $('body').html("<h1>Compra finalizada !</h1>")
+
+  }, 2500);
+  
    //Enviar carrito procesar pago settimeout
 
 })
@@ -203,6 +212,7 @@ $('.cerrar').click(()=>{
   if(pagar === true){
   carritoUsuario = [];
   actualizarCarrito();
+  $('body').html("<h1>Compra finalizada !</h1>")
   }
 
 })
@@ -317,12 +327,9 @@ function restarUnidad() {
         
         if( item.id == boton.parentElement.id && unidadesElegidas == 1){
           
-          //eliminar producto del carrito
-          
-          
-          
-          
           //alert("Producto a borrar");
+          
+         
           
 
 
@@ -425,6 +432,7 @@ function dolarMODAl(){
 
   })
 }
+
 
 
 
