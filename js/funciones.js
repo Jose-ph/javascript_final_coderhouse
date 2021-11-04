@@ -201,7 +201,13 @@ function pagar(){
     
    
       $('body').html(`  <h2>Compra finalizada !</h2>
-      <img src="../images/cesta-de-la-compra.png" id="cesta-compra" alt="cesta de la compra">`)
+      <img src="../images/cesta-de-la-compra.png" id="cesta-compra" alt="cesta de la compra">
+       
+
+        <a href="../pages/tienda.html" target="_self"><button type="button" class="btn btn-primary" id="reload">Reset</button></a>
+      
+        <script src="../js/funciones.js"></script>
+      `)
     
 
     
@@ -447,8 +453,19 @@ function dolarMODAl(){
 }
 
 
+// Recargar pagina
+
+/* function recargarPagina(){
+  
+
+   reload.onclick = function () {location.reload();
+return false;}
+}
 
 
+let botonReset = document.querySelector('#reset');
+botonReset.onclick = function(){window.reload()}
+//$('#reload').click(()=>{location.reload()});
 
 
-
+ */
