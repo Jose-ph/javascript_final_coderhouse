@@ -198,7 +198,16 @@ function pagar(){
   setTimeout(() => {
     carritoUsuario = [];
     actualizarCarrito()
-    $('body').html("<h1>Compra finalizada !</h1>")
+    
+   
+      $('body').html(`  <h2>Compra finalizada !</h2>
+      <img src="../images/cesta-de-la-compra.png" id="cesta-compra" alt="cesta de la compra">`)
+    
+
+    
+
+
+
 
   }, 2500);
   
@@ -210,9 +219,13 @@ $('.cerrar').click(()=>{
 
   
   if(pagar === true){
-  carritoUsuario = [];
-  actualizarCarrito();
-  $('body').html("<h1>Compra finalizada !</h1>")
+    carritoUsuario = [];
+   actualizarCarrito();
+   //$('body').html("<h1>Compra finalizada !</h1>")
+
+    
+  
+    
   }
 
 })

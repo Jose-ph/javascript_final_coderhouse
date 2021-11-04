@@ -287,3 +287,24 @@ h1 {
     width: 400px;
 }
 
+#cesta-compra {
+
+    width: 45%;
+}
+#cesta-compra {
+    animation-duration: 5s;
+    animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 45%;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 45%;
+    }
+  }
+  
