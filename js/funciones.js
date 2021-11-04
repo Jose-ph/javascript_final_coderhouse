@@ -109,6 +109,7 @@ function mostrarTotalGastado() {
   if (carritoUsuario.length > 0) {
     let precioTotal = 0;
     let productosTotal = 0;
+    
 
     carritoUsuario.forEach((producto) => {
       precioTotal += producto.precio * producto.unidadesElegidas;
@@ -118,9 +119,17 @@ function mostrarTotalGastado() {
 
     seccionMostrarTotal.innerHTML = `
 
+    <p class="parrafo" id="parrafo">La cantidad de productos es : ${productosTotal}
+      y el valor total es  $: ${precioTotal.toFixed(2)}
+      </p>
+      
+     
+      <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
+        <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
+
     
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" id="btn-comprar" data-bs-target="#exampleModal">
       Comprar
       </button> -->
 
@@ -134,19 +143,14 @@ function mostrarTotalGastado() {
         </div>
         <div class="modal-body">
 
-      <p class="parrafo" id="parrafo-modal">La cantidad de productos es : ${productosTotal}
-      y el valor total es  $: ${precioTotal.toFixed(2)}
-      </p>
+      <p id="parrafo-modal">Aquí se procesara el pago</p>
       
      
-      <button type="button" class="btn btn-danger dolar">Pasar total a USD</button>
-        <button type="button" class="btn btn-info pesos">Pasar total a Pesos</button>
-     
-      </div>
       <div class="modal-footer">
         
-        <button type="button" class="btn btn-secondary cerrar" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary pagar">Pagar</button>
+      <button type="button" class="btn btn-secondary cerrar" data-bs-dismiss="modal">Cerrar</button>
+      <button type="button" class="btn btn-primary pagar">Pagar</button>
+     
         
       </div>
     </div>
@@ -157,7 +161,7 @@ function mostrarTotalGastado() {
 
     pasarADolar();
     pasarAPesos();
-    dolarMODAl();
+    
     pagar();
     return precioTotal;
   } else {
@@ -177,8 +181,16 @@ function pagar(){
 
   
 
-  cuerpoModal.innerHTML =" <p>Gracias por su compra !!</p>"
+  //cuerpoModal.innerHTML =" <p>Gracias por su compra !!</p>"
 
+    $('#parrafo-modal').text("Procesando pago...")
+
+  setTimeout(() => {
+    $('#parrafo-modal').text("Gracias por su compra")
+
+  }, 1500);
+ /*  $('#parrafo-modal').text("Gracias por su compra")
+ */
   pagar = true;
 
    //Enviar carrito procesar pago settimeout
@@ -347,21 +359,12 @@ function guardarCarritoUsuario() {
   localStorage.setItem("carritoUsuario", carritoJson);
 }
 
-
-
-
 //Estas funciones manejan el tipo de cambio.
 
 function pasarADolar() {
   $(".dolar").click(() => {
     console.log("click dolar");
-
-    let parrafoModal = document.querySelector("#parrafo-modal");
-        parrafoModal.innerHTML =`<p>Esto debe ser en Dolar</p>`
-
-     /* $('#parrafo-modal').text("Esto debe ser en dólares") 
- */
-   /*  $.get(URLGET, function (respuesta, estado) {
+    $.get(URLGET, function (respuesta, estado) {
       if (estado === "success") {
         let datosDolarOficial = respuesta;
         //$('.parrafo').text(`${datosDolarOficial[0].casa.venta}`)
@@ -369,17 +372,12 @@ function pasarADolar() {
         console.log(respuesta);
 
         let precioTotal = parseInt(mostrarTotalGastado()) / tipoCambioOficial;
-        let cuerpoModal = document.querySelector(".modal-body");
 
-        cuerpoModal.innerHTML= `<p>El total en u$d es : ${precioTotal.toFixed(2)} </p>
-       
-        
-        
-        `;
+        $(".parrafo").text(`El total en u$d es : ${precioTotal.toFixed(2)} `);
       } else {
         console.log("No llegaron los datos");
       }
-    }); */
+    });
   });
 }
 
@@ -387,13 +385,14 @@ function pasarAPesos() {
   $(".pesos").click(() => {
     console.log("click peso");
 
-   /*  let precioTotal = parseInt(mostrarTotalGastado());
+    let precioTotal = parseInt(mostrarTotalGastado());
 
-    $("#parrafo-modal").text(`El total en $ es : ${precioTotal.toFixed(2)} `); */
-
-    $('#parrafo-modal').text("Esto debe ser en pesos")
+    $(".parrafo").text(`El total en $ es : ${precioTotal.toFixed(2)} `);
   });
 }
+
+
+
 
 //Esta funcioón muestra las cartas del arraycopiado
 function mostrarCartaClon(cartas) {
@@ -426,3 +425,9 @@ function dolarMODAl(){
 
   })
 }
+
+
+
+
+
+

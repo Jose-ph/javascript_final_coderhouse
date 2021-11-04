@@ -1,3 +1,6 @@
+
+
+
 let sectionCards = document.querySelector("#fila-servicios");
 
 crearCards(productos, sectionCards);
@@ -28,9 +31,47 @@ $(document).ready(() => console.log("El DOM está listo"));
 let carritoUsuario = JSON.parse(localStorage.getItem("carritoUsuario")) || [];
 actualizarCarrito();
 
+
 //Llamado a API DOLAR para pasar el total a esa moneda
 
 const URLGET = "https://www.dolarsi.com/api/api.php?type=valoresprincipales";
+
+
+
+ //Obtener los datos de la Api
+
+ $.get(URLGET,function(respuesta,estado){
+
+  
+
+
+  if(estado === "success"){
+
+    let datosDolarOficial;
+    let tipoCambioOficial;
+  
+
+     datosDolarOficial = respuesta;
+
+    tipoCambioOficial = parseInt(datosDolarOficial[0].casa.venta);
+    
+    let precioTotal = parseInt(mostrarTotalGastado()) / tipoCambioOficial;
+
+   // parrafoModal.innerHTML =`<p>${datosDolarOficial[0].casa.venta}</p>`
+
+    //parrafoModal.innerHTML= `<p>El total en u$d es : ${precioTotal.toFixed(2)} </p> `
+
+    
+
+    return precioTotalDolar = precioTotal.toFixed(2);
+
+
+  }
+
+  
+ });
+
+
 
 //Animación del banner
 
@@ -76,4 +117,6 @@ botonVidrio.click(() => {
 
   console.log(cardsDuplicadas);
 });
+
+
 
