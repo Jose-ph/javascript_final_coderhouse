@@ -76,7 +76,7 @@ function agregarAlCarrito(idProducto) {
     productos.forEach((producto) => {
       if (producto.id == idProducto) {
         producto.stock--;
-        console.log(producto.stock);
+        
       }
     });
   }
@@ -224,7 +224,7 @@ function borrarProductoCarrito() {
   botonEliminar.forEach((boton) => {
     boton.onclick = () => {
       id = boton.parentElement.id;
-      console.log(id);
+      
 
       carritoUsuario = carritoUsuario.filter((item) => item.id != id);
 
@@ -276,7 +276,7 @@ function sumarUnidad() {
         ) {
           unidadesElegidas++;
           item.stock--;
-          console.log(item.stock);
+          
 
           if (item.stock == 0) {
             alert("No hay más stock");
@@ -305,7 +305,7 @@ function restarUnidad() {
         if (item.id == boton.parentElement.id && unidadesElegidas > 1) {
           unidadesElegidas--;
           item.stock++;
-          console.log(unidadesElegidas);
+          
         }
 
         return {
@@ -340,13 +340,13 @@ function guardarCarritoUsuario() {
 
 function pasarADolar() {
   $(".dolar").click(() => {
-    console.log("click dolar");
+    
     $.get(URLGET, function (respuesta, estado) {
       if (estado === "success") {
         let datosDolarOficial = respuesta;
 
         let tipoCambioOficial = parseInt(datosDolarOficial[0].casa.venta);
-        console.log(respuesta);
+       
 
         let precioTotal = parseInt(mostrarTotalGastado()) / tipoCambioOficial;
 
@@ -360,7 +360,7 @@ function pasarADolar() {
 
 function pasarAPesos() {
   $(".pesos").click(() => {
-    console.log("click peso");
+    
 
     let precioTotal = parseInt(mostrarTotalGastado());
 
@@ -373,8 +373,7 @@ function mostrarCartaClon(cartas) {
   sectionCards.innerHTML = "";
   sectionCards.appendChild(cartas[0]);
   sectionCards.appendChild(cartas[1]);
-  console.log(cartas[0]);
-  console.log(cartas[1]);
+  
   cardsDuplicadas = Array.from(cards).map((cards) => cards);
 }
 
@@ -385,8 +384,7 @@ function mostrarCartas(cartas) {
   sectionCards.appendChild(cartas[1]);
   sectionCards.appendChild(cartas[2]);
   sectionCards.appendChild(cartas[3]);
-  console.log(cartas[0]);
-  console.log(cartas[1]);
+  
   cardsDuplicadas = Array.from(cards).map((cards) => cards);
 }
 
@@ -397,8 +395,7 @@ function borrarRestando() {
   botonRestar.forEach((boton) => {
     boton.onclick = () => {
       id = boton.parentElement.id;
-      console.log(id);
-
+      
       carritoUsuario = carritoUsuario.filter((item) => item.id != id);
 
       actualizarCarrito();

@@ -19,13 +19,11 @@ botonAgregarAlCarrito.forEach((boton) => {
 
     agregarAlCarrito(opcionUsuario);
 
-    console.log(opcionUsuario);
+    
   };
 });
 
-// Se asegura que el DOM esté listo para manipular
 
-$(document).ready(() => console.log("El DOM está listo"));
 
 //Estas dos líneas  muestran el carrito guardado en el storage
 let carritoUsuario = JSON.parse(localStorage.getItem("carritoUsuario")) || [];
@@ -56,7 +54,7 @@ let cardsDuplicadas = Array.from(cards).map((cards) => cards);
 botonTodos.click(() => {
   cardsDuplicadas = cardsDuplicadas.filter((card) => card.className);
 
-  console.log(cards);
+ 
 
   mostrarCartas(cardsDuplicadas);
 });
@@ -66,7 +64,7 @@ botonPlastico.click(() => {
     (card) => card.className != "card vidrio"
   );
 
-  console.log(cards);
+  
 
   mostrarCartaClon(cardsDuplicadas);
 });
@@ -78,11 +76,11 @@ botonVidrio.click(() => {
     (card) => card.className != "card plástico"
   );
 
-  console.log(cards);
+  
 
   mostrarCartaClon(cardsDuplicadas);
 
-  console.log(cardsDuplicadas);
+  
 });
 
 
