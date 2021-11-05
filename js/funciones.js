@@ -101,7 +101,17 @@ function actualizarCarrito() {
 
   guardarCarritoUsuario();
 
-  //$("#carrito .card").hide().fadeIn(1000);
+   carritoUsuario.forEach(item => {
+
+    if(item.unidadesElegidas == 1){
+
+      
+      $('.restar').click(()=> borrarRestando());
+    }
+     
+   });
+
+  
 }
 
 //Esta función muestra el total gastado.
@@ -182,16 +192,13 @@ function pagar(){
 
   
 
-  //cuerpoModal.innerHTML =" <p>Gracias por su compra !!</p>"
-
     $('#parrafo-modal').text("Procesando pago...")
 
   setTimeout(() => {
     $('#parrafo-modal').text("Gracias por su compra!!")
 
   }, 1500);
- /*  $('#parrafo-modal').text("Gracias por su compra")
- */
+ 
   pagar = true;
 
   //Ocultar resto página
@@ -217,7 +224,7 @@ function pagar(){
 
   }, 2500);
   
-   //Enviar carrito procesar pago settimeout
+   
 
 })
 
@@ -343,19 +350,7 @@ function restarUnidad() {
           
         }
 
-        
-        if( item.id == boton.parentElement.id && unidadesElegidas == 1){
-          
-          //alert("Producto a borrar");
-          
-         
-          
-
-
-        }
-
-       
-        
+    
 
         return {
           ...item,
@@ -393,7 +388,7 @@ function pasarADolar() {
     $.get(URLGET, function (respuesta, estado) {
       if (estado === "success") {
         let datosDolarOficial = respuesta;
-        //$('.parrafo').text(`${datosDolarOficial[0].casa.venta}`)
+        
         let tipoCambioOficial = parseInt(datosDolarOficial[0].casa.venta);
         console.log(respuesta);
 
@@ -429,6 +424,7 @@ function mostrarCartaClon(cartas) {
   console.log(cartas[1]);
   cardsDuplicadas = Array.from(cards).map((cards) => cards);
 }
+
 //Esta función muestra todas las cartas
 function mostrarCartas(cartas) {
   sectionCards.innerHTML = "";
@@ -443,29 +439,19 @@ function mostrarCartas(cartas) {
 
 
 
-function dolarMODAl(){
+//BORRAR DESDE BOTON RESTAR
+function borrarRestando(){
+let botonRestar = document.querySelectorAll(".restar");
 
-  $('.dolar-modal').click(()=>{
+  botonRestar.forEach((boton) => {
+    boton.onclick = () => {
+      id = boton.parentElement.id;
+      console.log(id);
 
-    $("#parrafo-modal").text(`El total en $ es : 1000`);
+      carritoUsuario = carritoUsuario.filter((item) => item.id != id);
 
-  })
+      actualizarCarrito();
+    };
+  });
+
 }
-
-
-// Recargar pagina
-
-/* function recargarPagina(){
-  
-
-   reload.onclick = function () {location.reload();
-return false;}
-}
-
-
-let botonReset = document.querySelector('#reset');
-botonReset.onclick = function(){window.reload()}
-//$('#reload').click(()=>{location.reload()});
-
-
- */
