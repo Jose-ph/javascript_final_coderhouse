@@ -38,39 +38,6 @@ const URLGET = "https://www.dolarsi.com/api/api.php?type=valoresprincipales";
 
 
 
- //Obtener los datos de la Api
-
- $.get(URLGET,function(respuesta,estado){
-
-  
-
-
-  if(estado === "success"){
-
-    let datosDolarOficial;
-    let tipoCambioOficial;
-  
-
-     datosDolarOficial = respuesta;
-
-    tipoCambioOficial = parseInt(datosDolarOficial[0].casa.venta);
-    
-    let precioTotal = parseInt(mostrarTotalGastado()) / tipoCambioOficial;
-
-   // parrafoModal.innerHTML =`<p>${datosDolarOficial[0].casa.venta}</p>`
-
-    //parrafoModal.innerHTML= `<p>El total en u$d es : ${precioTotal.toFixed(2)} </p> `
-
-    
-
-    return precioTotalDolar = precioTotal.toFixed(2);
-
-
-  }
-
-  
- });
-
 
 
 //Animación del banner

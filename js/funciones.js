@@ -67,18 +67,18 @@ function agregarAlCarrito(idProducto) {
       (producto) => producto.id == idProducto
     );
 
-    carritoUsuario.push({ ...itemCoincideId, unidadesElegidas: 1,stock : itemCoincideId.stock  });
-
-    productos.forEach(producto => {
-
-      if(producto.id == idProducto){
-        
-          producto.stock--;
-          console.log(producto.stock);
-      }
-      
+    carritoUsuario.push({
+      ...itemCoincideId,
+      unidadesElegidas: 1,
+      stock: itemCoincideId.stock,
     });
-    
+
+    productos.forEach((producto) => {
+      if (producto.id == idProducto) {
+        producto.stock--;
+        console.log(producto.stock);
+      }
+    });
   }
 
   actualizarCarrito();
@@ -87,7 +87,6 @@ function agregarAlCarrito(idProducto) {
 //Esta funcion muestra el carrito sin recargar la página
 function actualizarCarrito() {
   mostrarProductosCarrito();
-  
 
   sumarUnidad();
 
@@ -101,17 +100,11 @@ function actualizarCarrito() {
 
   guardarCarritoUsuario();
 
-   carritoUsuario.forEach(item => {
-
-    if(item.unidadesElegidas == 1){
-
-      
-      $('.restar').click(()=> borrarRestando());
+  carritoUsuario.forEach((item) => {
+    if (item.unidadesElegidas == 1) {
+      $(".restar").click(() => borrarRestando());
     }
-     
-   });
-
-  
+  });
 }
 
 //Esta función muestra el total gastado.
@@ -119,7 +112,6 @@ function mostrarTotalGastado() {
   if (carritoUsuario.length > 0) {
     let precioTotal = 0;
     let productosTotal = 0;
-    
 
     carritoUsuario.forEach((producto) => {
       precioTotal += producto.precio * producto.unidadesElegidas;
@@ -172,7 +164,7 @@ function mostrarTotalGastado() {
 
     pasarADolar();
     pasarAPesos();
-    
+
     pagar();
     return precioTotal;
   } else {
@@ -180,73 +172,45 @@ function mostrarTotalGastado() {
   }
 }
 
-
-function pagar(){
-
+function pagar() {
   let cuerpoModal = document.querySelector(".modal-body");
   let pagar = false;
 
   //Agrega botón pagar
 
-  $('.pagar').click(()=>{
+  $(".pagar").click(() => {
+    $("#parrafo-modal").text("Procesando pago...");
 
-  
+    setTimeout(() => {
+      $("#parrafo-modal").text("Gracias por su compra!!");
+    }, 1500);
 
-    $('#parrafo-modal').text("Procesando pago...")
+    pagar = true;
 
-  setTimeout(() => {
-    $('#parrafo-modal').text("Gracias por su compra!!")
+    //Ocultar resto página
+    setTimeout(() => {
+      carritoUsuario = [];
+      actualizarCarrito();
 
-  }, 1500);
- 
-  pagar = true;
-
-  //Ocultar resto página
-  setTimeout(() => {
-    carritoUsuario = [];
-    actualizarCarrito()
-    
-   
-      $('body').html(`  <h2>Compra finalizada !</h2>
+      $("body").html(`  <h2>Compra finalizada !</h2>
       <img src="../images/cesta-de-la-compra.png" id="cesta-compra" alt="cesta de la compra">
        
 
         <a href="../pages/tienda.html" target="_self"><button type="button" class="btn btn-primary" id="reload">Reset</button></a>
       
         <script src="../js/funciones.js"></script>
-      `)
-    
+      `);
+    }, 2500);
+  });
 
-    
-
-
-
-
-  }, 2500);
-  
-   
-
-})
-
-$('.cerrar').click(()=>{
-
-  
-  if(pagar === true){
-    carritoUsuario = [];
-   actualizarCarrito();
-   //$('body').html("<h1>Compra finalizada !</h1>")
-
-    
-  
-    
-  }
-
-})
-
-
+  $(".cerrar").click(() => {
+    if (pagar === true) {
+      carritoUsuario = [];
+      actualizarCarrito();
+      //$('body').html("<h1>Compra finalizada !</h1>")
+    }
+  });
 }
-
-
 
 //Esta funcion borra el producto del carrito
 
@@ -280,8 +244,10 @@ function mostrarProductosCarrito() {
     <img src="${item.img}" class="card-img-top">
     <div class="card-body" id="${item.id}">
     <h5 class="card-title">${item.id}-- Miel Pura</h5>
-    <p class="card-text"> Precio:ARS ${item.precio}-- Unidades:${item.unidadesElegidas -1 }
-      Stock: ${item.stock } 
+    <p class="card-text"> Precio:ARS ${item.precio}-- Unidades:${
+      item.unidadesElegidas - 1
+    }
+      Stock: ${item.stock} 
       Descripción : ${item.descripcion} ${item.peso}</p>
     <button type="button" class ="sumar btn btn-success">+</button>
     <button type="button" class="restar btn btn-info">-</button> 
@@ -304,23 +270,18 @@ function sumarUnidad() {
         let unidadesElegidas = item.unidadesElegidas;
 
         if (
-          item.id == boton.parentElement.id/*  &&
-          unidadesElegidas < item.stock */
-          && item.stock > 0
+          item.id == boton.parentElement.id /*  &&
+          unidadesElegidas < item.stock */ &&
+          item.stock > 0
         ) {
           unidadesElegidas++;
           item.stock--;
-          console.log(item.stock)
+          console.log(item.stock);
 
-          
-
-          if(item.stock == 0){
+          if (item.stock == 0) {
             alert("No hay más stock");
           }
-          
         }
-
-        
 
         return {
           ...item,
@@ -345,12 +306,7 @@ function restarUnidad() {
           unidadesElegidas--;
           item.stock++;
           console.log(unidadesElegidas);
-
-         
-          
         }
-
-    
 
         return {
           ...item,
@@ -388,7 +344,7 @@ function pasarADolar() {
     $.get(URLGET, function (respuesta, estado) {
       if (estado === "success") {
         let datosDolarOficial = respuesta;
-        
+
         let tipoCambioOficial = parseInt(datosDolarOficial[0].casa.venta);
         console.log(respuesta);
 
@@ -412,9 +368,6 @@ function pasarAPesos() {
   });
 }
 
-
-
-
 //Esta funcioón muestra las cartas del arraycopiado
 function mostrarCartaClon(cartas) {
   sectionCards.innerHTML = "";
@@ -437,11 +390,9 @@ function mostrarCartas(cartas) {
   cardsDuplicadas = Array.from(cards).map((cards) => cards);
 }
 
-
-
 //BORRAR DESDE BOTON RESTAR
-function borrarRestando(){
-let botonRestar = document.querySelectorAll(".restar");
+function borrarRestando() {
+  let botonRestar = document.querySelectorAll(".restar");
 
   botonRestar.forEach((boton) => {
     boton.onclick = () => {
@@ -453,5 +404,4 @@ let botonRestar = document.querySelectorAll(".restar");
       actualizarCarrito();
     };
   });
-
 }
